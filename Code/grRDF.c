@@ -31,7 +31,6 @@ void grRDF_pasCalExpl (grRDF *gr, double (*f)(double t, double x, double y), dou
     gr->t+=gr->dt;
     double t=gr->t;
     //Guardem la graella antiga
-    //Fer malloc*******
     double UK[nx+1][ny+1];
     for(i=0;i<=nx;i++){
         for(j=0;j<=ny;j++){
