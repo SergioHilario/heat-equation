@@ -4,11 +4,10 @@
 #include <math.h>
 
 #include "grRDF.h"
-//A change hereeefasdf
 
-#define k 0.13
-#define c 0.11
-#define rho 7.8
+#define K 0.13
+#define C 0.11
+#define RHO 7.8
 
 /*
  * Per compilar:
@@ -21,7 +20,7 @@
  */
 double F (double t, double x, double y) {
     if(sqrt((x-0.5)*(x-0.5)+(y-0.5)*(y-0.5))<0.2){
-        return 100/k;
+        return 100/K;
     }
     else return 0;
 }
@@ -46,7 +45,7 @@ double H (double x, double y) {
 int main (int argc, char *argv[]) {
   //Declaracions
   int k,nx,ny,nt;
-  double dx;
+  double dx,dy;
   grRDF gr;
 
   FILE *f=fopen("file.txt","w");
@@ -56,21 +55,25 @@ int main (int argc, char *argv[]) {
     }
 
   //Control parametres linia de comandes
-  if (argc!=5
+  if (argc!=6
          || sscanf(argv[1],"%lf",&dx)!=1
-         || sscanf(argv[2],"%d",&nx)!=1
-         || sscanf(argv[3],"%d",&ny)!=1
-         || sscanf(argv[4],"%d",&nt)!=1
+         || sscanf(argv[2],"%lf",&dy)!=1
+         || sscanf(argv[3],"%d",&nx)!=1
+         || sscanf(argv[4],"%d",&ny)!=1
+         || sscanf(argv[5],"%d",&nt)!=1
       ) {
-      fprintf(stderr, "./polexpl dx nx ny nt\n");
+      fprintf(stderr, "./esqordre1 dx dy nx ny nt\n");
       return -1;
    }
 
    //Configuracio parametres
-   double mux=0.2;
-   double dt=mux*dx*dx;
-   double dy=dx;
-   
+   double dt=K/(C*RHO*nt);
+   double mux=dt/(dx*dx);
+   double muy=dt/(dy*dy);  
+
+   //Comprova la condició:
+   if(1-2*mux-2*muy<0) printf("No es compleix la condició de convergència\n");
+   if(dx>=1 || dy>=1) printf("Els passos en espai són més grans que 1\n");
    
    //Inicialitzo graella (parametres i llesca t=0)
    grRDF_init(&gr,dx,dy,dt,nx,ny,H);
@@ -86,4 +89,6 @@ int main (int argc, char *argv[]) {
    fclose(f);
    return 0;
 }
-#undef k,c,rho
+#undef K
+#undef RHO
+#undef C
