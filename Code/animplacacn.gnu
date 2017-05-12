@@ -6,8 +6,23 @@
 # A continuacio feu
 # load 'animplacacn.gnu'
 
-print "k=", k
-splot 'placacn.txt' index k w l
-pause p
-k=k+1
-if (k<=kmax) reread
+set view map
+set size ratio -1
+set pm3d
+unset surface
+set cbrange [0:25]
+kmax=15
+p=1
+set output 'peli.gif'
+set terminal gif animate delay 0.1
+
+do for [k=0:kmax]{
+  print "k=", k
+  splot 'placacn.txt' index k w l
+  pause p
+}
+
+set output
+
+
+
