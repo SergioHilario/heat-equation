@@ -13,6 +13,7 @@
  * Per compilar:
         gcc -o crancknic -g -Wall crancknic.c grRDF.c -lm
  */
+        
 
 /*!
  * \brief Funcio f del problema mixt per l'equaci\'o de la

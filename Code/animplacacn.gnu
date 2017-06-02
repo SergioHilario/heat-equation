@@ -11,8 +11,8 @@ set size ratio -1
 set pm3d
 unset surface
 set cbrange [0:25]
-kmax=15
-p=1
+kmax=100
+p=0
 set output 'peli.gif'
 set terminal gif animate delay 0.1
 

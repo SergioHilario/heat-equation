@@ -126,7 +126,7 @@ void grRDF_escriure (grRDF *gr, FILE *fp){
     fprintf(fp,"# %lf\n",t);
     for(i=0;i<=nx;i++){
         for(j=0;j<=ny;j++){
-            fprintf(fp,"%lf %lf %lf\n",i*dx,j*dy,U(i,j));
+            fprintf(fp,"%lf %lf %.16G\n",i*dx,j*dy,U(i,j));
         }
         fprintf(fp,"\n");
     }
