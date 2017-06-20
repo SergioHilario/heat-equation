@@ -14,7 +14,7 @@
         gcc -o placacn -g -Wall placacn.c grRDF.c -lm
  */
 
-/*Per comparar resultats: paste -d ' ' placacn.txt placacn2.txt | awk '{ print $3-$6}' | less*/
+/*Per comparar resultats amb vi: paste -d ' ' placacn.txt placacn2.txt | awk '{ print $3-$6}' | less*/
 
 /*!
  * \brief Funcio f del problema mixt per l'equaci\'o de la
